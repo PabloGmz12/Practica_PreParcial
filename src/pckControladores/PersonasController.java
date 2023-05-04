@@ -22,7 +22,7 @@ public class PersonasController implements ActionListener{
     frmPersonas VistaPersonas;
     PersonasModel ModeloPersonas;
     
-    public DefaultTableModel TablaPersonas = new DefaultTableModel();
+    //public DefaultTableModel TablaPersonas = new DefaultTableModel();
     
     //Levantar de forma automática el form principal
 
@@ -39,11 +39,11 @@ public class PersonasController implements ActionListener{
         this.VistaPrincipal.setVisible(true);
         
         //Mostrar tabla
-        this.TablaPersonas.addColumn("APELLIDOS");
+        /*this.TablaPersonas.addColumn("APELLIDOS");
         this.TablaPersonas.addColumn("NOMBRE");
         this.TablaPersonas.addColumn("TELEFONO");
         
-        this.VistaPersonas.jtTabla.setModel(TablaPersonas);
+        this.VistaPersonas.jtTabla.setModel(TablaPersonas);*/
     }
 
     @Override
@@ -63,11 +63,12 @@ public class PersonasController implements ActionListener{
             this.VistaPersonas.txtNombre.getText(),
             this.VistaPersonas.txtTelefono.getText());
             JOptionPane.showMessageDialog(null,"Persona agregada!");
+            this.VistaPersonas.txtApellidos.setText("");
+            this.VistaPersonas.txtNombre.setText("");
+            this.VistaPersonas.txtTelefono.setText(""); 
         }
         if(e.getSource()== this.VistaPersonas.btnListar){
-            this.TablaPersonas.addRow(new Object[]{this.ModeloPersonas.ListaPersonas.get(0).getApellidos(),
-            this.ModeloPersonas.ListaPersonas.get(0).getNombre(),
-            this.ModeloPersonas.ListaPersonas.get(0).getTelefono()});
+            this.VistaPersonas.jtTabla.setModel(this.ModeloPersonas.MostrarPersonas());
         }
     }
 }
